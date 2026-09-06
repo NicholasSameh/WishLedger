@@ -1,0 +1,38 @@
+{
+  "build": {
+    "beforeBuildCommand": "BUILD_TARGET=native npm run build",
+    "beforeDevCommand": "npm run dev",
+    "devPath": "http://localhost:3000",
+    "distDir": "../out"
+  },
+  "package": {
+    "productName": "WishLedger",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "http": {
+        "all": true,
+        "scope": [
+          "https://public-operation-hk4e-sg.hoyoverse.com/*",
+          "https://public-operation-hkrpg-sg.hoyoverse.com/*",
+          "https://public-operation-hk4e.mihoyo.com/*",
+          "https://public-operation-hkrpg.mihoyo.com/*"
+        ]
+      }
+    },
+    "bundle": {
+      "identifier": "com.wishledger.app",
+      "active": true
+    },
+    "windows": [
+      {
+        "title": "WishLedger",
+        "width": 1180,
+        "height": 800,
+        "minWidth": 900,
+        "minHeight": 600
+      }
+    ]
+  }
+}

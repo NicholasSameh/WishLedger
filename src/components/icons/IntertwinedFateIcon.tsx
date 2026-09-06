@@ -1,0 +1,41 @@
+interface IconProps {
+  className?: string;
+}
+
+/**
+ * Original stylized mark — a two-tone orb with four-pointed sparkle
+ * accents, evoking the "wish" motif without reproducing any specific
+ * copyrighted game asset. Used as the app logo (always) and as the
+ * Genshin watermark (large, near-invisible opacity).
+ */
+export function IntertwinedFateIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="fate-pink" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#F5A8D0" />
+          <stop offset="100%" stopColor="#E36FA8" />
+        </linearGradient>
+        <linearGradient id="fate-blue" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#8FC7F0" />
+          <stop offset="100%" stopColor="#5B9BD8" />
+        </linearGradient>
+      </defs>
+
+      {/* Two interlocking teardrop petals forming the orb */}
+      <path
+        d="M50 12 C68 12 80 28 80 46 C80 58 70 66 58 66 C50 66 44 60 44 52 C44 44 50 40 50 32 C50 22 44 18 36 18 C46 12 50 12 50 12Z"
+        fill="url(#fate-pink)"
+      />
+      <path
+        d="M50 88 C32 88 20 72 20 54 C20 42 30 34 42 34 C50 34 56 40 56 48 C56 56 50 60 50 68 C50 78 56 82 64 82 C54 88 50 88 50 88Z"
+        fill="url(#fate-blue)"
+      />
+
+      {/* Four-pointed sparkles */}
+      <path d="M50 42 L53 47 L58 50 L53 53 L50 58 L47 53 L42 50 L47 47 Z" fill="#FFF7E6" />
+      <path d="M78 20 L79.5 23.5 L83 25 L79.5 26.5 L78 30 L76.5 26.5 L73 25 L76.5 23.5 Z" fill="#FFF7E6" opacity="0.85" />
+      <path d="M20 72 L21.5 75.5 L25 77 L21.5 78.5 L20 82 L18.5 78.5 L15 77 L18.5 75.5 Z" fill="#FFF7E6" opacity="0.85" />
+    </svg>
+  );
+}
