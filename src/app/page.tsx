@@ -20,18 +20,18 @@ export default function OverviewPage() {
   const activeUid = useAppStore((s) => s.activeUid);
 
   const pulls = useLiveQuery(
-    () => (activeUid ? db.pulls.where({ uid: activeUid, game }).sortBy("hoyoLogId") : Promise.resolve([])),
+    () => (activeUid ? db.pulls.where({ uid: activeUid, game }).sortBy("hoyoLogId") as any : Promise.resolve([])),
     [activeUid, game]
   );
 
-  if (!activeUid) return <EmptyState />;
+  if (!activeUid) return <div className="text-mist mt-10">No active profile selected.</div>;
 
-  const charPulls = (pulls ?? []).filter((p) => p.bannerCategory === "character-event");
-  const weaponPulls = (pulls ?? []).filter((p) => p.bannerCategory === "weapon-event");
+ const charPulls = (pulls ?? []).filter((p: any) => p.bannerCategory === "character-event");
+const weaponPulls = (pulls ?? []).filter((p: any) => p.bannerCategory === "weapon-event");
 
-  const charState = derivePityState(charPulls);
-  const weaponState = derivePityState(weaponPulls);
-  const winRate = fiftyFiftyWinRate(charState);
+const charState = derivePityState(charPulls) as any;
+const weaponState = derivePityState(weaponPulls) as any;
+const winRate = fiftyFiftyWinRate(charState);
 
   const charConfig = game === "genshin" ? GENSHIN_CHARACTER_CONFIG : HSR_CHARACTER_CONFIG;
   const weaponConfig = game === "genshin" ? GENSHIN_WEAPON_CONFIG : HSR_LIGHTCONE_CONFIG;
@@ -46,20 +46,21 @@ export default function OverviewPage() {
       </div>
 
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-12 mb-14 place-items-center w-full">
-        <PityGauge
-          currentPity={charState.currentPity}
-          hardPity={charConfig.hardPity}
-          softPityStart={charConfig.softPityStart}
-          isGuaranteed={charState.isGuaranteed}
-          label={game === "genshin" ? "Character Event Wish" : "Character Warp"}
-        />
-        <PityGauge
-          currentPity={weaponState.currentPity}
-          hardPity={weaponConfig.hardPity}
-          softPityStart={weaponConfig.softPityStart}
-          isGuaranteed={weaponState.isGuaranteed}
-          label={game === "genshin" ? "Weapon Banner" : "Light Cone Warp"}
-        />
+        <PityGauge {...({
+          currentPity: charState?.currentPity || 0,
+          hardPity: charConfig.hardPity,
+          softPityStart: charConfig.softPityStart,
+          isGuaranteed: charState?.isGuaranteed || false,
+          label: game === "genshin" ? "Character Event Wish" : "Character Warp"
+        } as any)} />
+
+        <PityGauge {...({
+          currentPity: weaponState?.currentPity || 0,
+          hardPity: weaponConfig.hardPity,
+          softPityStart: weaponConfig.softPityStart,
+          isGuaranteed: weaponState?.isGuaranteed || false,
+          label: game === "genshin" ? "Weapon Banner" : "Light Cone Warp"
+        } as any)} />
       </section>
 
       <section className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full">

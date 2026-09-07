@@ -91,8 +91,22 @@ function Platform({ name, children }: { name: string; children: React.ReactNode 
 
 function CodeBlock({ code }: { code: string }) {
   return (
-    <pre className="bg-panel border border-panelLine rounded-md p-3 text-xs text-parchment overflow-x-auto leading-relaxed">
-      <code>{code}</code>
-    </pre>
+    <div className="relative group bg-panel border border-panelLine rounded-md p-3 mt-2">
+      <button
+        onClick={(e) => {
+          navigator.clipboard.writeText(code);
+          const target = e.target as HTMLButtonElement;
+          target.innerText = "Copied!";
+          setTimeout(() => target.innerText = "Copy", 2000);
+        }}
+        className="absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-gray-200 text-xs px-2 py-1 rounded transition-opacity opacity-0 group-hover:opacity-100"
+      >
+        Copy
+      </button>
+      <pre className="text-xs text-parchment overflow-x-auto leading-relaxed">
+        <code>{code}</code>
+      </pre>
+    </div>
   );
 }
+

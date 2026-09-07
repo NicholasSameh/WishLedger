@@ -24,10 +24,10 @@ export function Sidebar() {
       {/* Header with slightly scaled logo for Genshin */}
       <div className="mb-10 flex items-center gap-3">
         <img 
-          src={game === "genshin" ? "/Item_Intertwined_Fate.webp" : "/Star_Rail_Special_Pass.webp"} 
+          src={game === "genshin" ? "/Item_Intertwined_Fate.png" : "/Star_Rail_Special_Pass.png"} 
           alt="Logo"
           className={`w-10 h-10 object-contain transition-transform duration-300 ${
-            game === "genshin" ? "scale-[1.15]" : "scale-100"
+            game === "genshin" ? "scale-[1.75]" : "scale-150"
           }`}
         />
         <h1 className="text-2xl font-bold tracking-wide bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent">

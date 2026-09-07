@@ -17,7 +17,7 @@ export function GameWatermark() {
         width: game === "genshin" ? '1100px' : '850px',
         height: game === "genshin" ? '1100px' : '850px',
         transform: game === "genshin" ? 'translate(37%, -50%)' : 'translate(30%, -50%)',
-        opacity: 0.90,
+        opacity: 0.30,
         zIndex: 0,
         pointerEvents: 'none',
         overflow: 'hidden',
@@ -28,7 +28,7 @@ export function GameWatermark() {
       <img 
         src={game === "genshin" ? "/Item_Intertwined_Fate.png" : "/Star_Rail_Special_Pass.png"} 
         alt=""
-        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        style={{ width: '100%', height: '100%', objectFit: 'contain'}}
       />
     </div>
   );
