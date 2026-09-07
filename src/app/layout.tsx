@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import { GameWatermark } from "@/components/GameWatermark";
 
@@ -19,11 +19,11 @@ const body = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "WishLedger — Genshin & HSR pull tracker",
-  description:
-    "Track your wish/warp history and calculate exact pity probabilities for Genshin Impact and Honkai: Star Rail. Everything stays on your device.",
-  manifest: "/manifest.json",
-  icons: { icon: "/icon.svg" },
+  title: "WishLedger", 
+  description: "Pull tracker and probability calculator for Genshin Impact and Honkai: Star Rail.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export const viewport: Viewport = {
